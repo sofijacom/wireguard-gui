@@ -10,13 +10,20 @@ rust-version = "1.57"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[profile.release]
+panic = "abort" # Strip expensive panic clean-up logic
+codegen-units = 1 # Compile crates one after another so the compiler can optimize better
+lto = true # Enables link to optimizations
+opt-level = "s" # Optimize for binary size
+strip = true # Remove debug symbols
+
 [build-dependencies]
 tauri-build = { version = "1.5", features = [] }
 
 [dependencies]
-serde_json = "1.0.125"
+serde_json = "1.0.132"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.7", features = ["system-tray", "api-all", "icon-png"] }
+tauri = { version = "1.8", features = ["system-tray", "api-all", "icon-png"] }
 tauri-plugin-window-state = "0.1.1"
 reqwest = { version = "0.12", features = ["json"] }
 tokio = { version = "1", features = ["full"] }

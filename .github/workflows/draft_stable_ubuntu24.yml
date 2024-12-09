@@ -14,7 +14,7 @@ env:
 
 jobs:
   draft_stable:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v3
@@ -93,9 +93,6 @@ jobs:
             wireguard-gui_${VERSION}_amd64.AppImage|| true
           gh release upload \
             $VERSION-$CHANNEL \
-            ./src-tauri/target/release/bundle/deb/wireguard-gui_${VERSION}_amd64.deb#wireguard-gui_amd64.deb
-          gh release upload \
-            $VERSION-$CHANNEL \
-            ./src-tauri/target/release/bundle/appimage/wireguard-gui_${VERSION}_amd64.AppImage#wireguard-gui_amd64.AppImage
+            ./src-tauri/target/release/bundle/deb/wireguard-gui_${VERSION}_amd64.deb#wireguard-gui_ubuntu_24_amd64.deb
         env:
           GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
